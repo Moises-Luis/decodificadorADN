@@ -1,5 +1,6 @@
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.util.Scanner;
 import javax.swing.*;
 import java.awt.event.*;
@@ -12,7 +13,7 @@ public class decodificadorADN extends JFrame implements ActionListener{
     Scanner entrada = new Scanner(System.in);
     private JPanel panelFondo;
     private JButton botonAceptar;
-    private JLabel instrucciones, ADN_decodificado;
+    private JLabel instrucciones,segundaParteDeLasInstrucciones, ADN_decodificado;
     private JTextField primerTexto, segundoTexto;
     private String aux, aux2;
     
@@ -21,37 +22,51 @@ public class decodificadorADN extends JFrame implements ActionListener{
         
         this.setVisible(true);
         this.setSize(300,300);
-        this.setMinimumSize(new Dimension(520,300));
+        this.setMinimumSize(new Dimension(500,300));
         //this.setResizable(false);
         this.setLocationRelativeTo(null);
         
        // this.getContentPane().setBackground(Color.red);
         panelFondo = new JPanel();
         panelFondo.setLayout(null);
-        //panelFondo.setBackground(Color.BLACK);
+        panelFondo.setBackground(Color.BLACK);
         panelFondo.setBounds(0,0,500,300);
         this.getContentPane().add(panelFondo);
         
-        instrucciones = new JLabel("Introduzca c/u de las secuencias del ADN en cada una de las casillas: ");
-        instrucciones.setBounds(10,10,500,50);
+        instrucciones = new JLabel("Introduzca c/u de las secuencias del");
+        instrucciones.setFont(new Font("chiller", 3,14));
+        instrucciones.setForeground(Color.red);
+        instrucciones.setBounds(100,10,500,50);
         panelFondo.add(instrucciones);
         
+        
+        segundaParteDeLasInstrucciones = new JLabel("ADN en cada una de las casillas: "); 
+        segundaParteDeLasInstrucciones.setFont(new Font("chiller", 3,14));
+        segundaParteDeLasInstrucciones.setForeground(Color.red);
+        segundaParteDeLasInstrucciones.setBounds(120,30,500,50);
+        panelFondo.add(segundaParteDeLasInstrucciones);
+        
+        
         primerTexto = new JTextField();
-        primerTexto.setBounds(10,70,200,40);
+        primerTexto.setBounds(70,100,200,30);
         panelFondo.add(primerTexto);
         
         segundoTexto = new JTextField();
-        segundoTexto.setBounds(10,130,200,40);
+        segundoTexto.setBounds(70,160,200,30);
         panelFondo.add(segundoTexto);
         
         botonAceptar = new JButton("Aceptar");
-        botonAceptar.setBounds(220,100,100,50);
+        botonAceptar.setFont(new Font("chiller",3,14));
+        botonAceptar.setForeground(Color.BLACK);
+        botonAceptar.setBounds(350,130,100,50);
         botonAceptar.addActionListener(this);
         panelFondo.add(botonAceptar);
         
         
         ADN_decodificado = new JLabel();
-        ADN_decodificado.setBounds(20,190,200,50);
+        ADN_decodificado.setForeground(Color.red);
+        segundaParteDeLasInstrucciones.setFont(new Font("chiller", 3,14));
+        ADN_decodificado.setBounds(200,220,200,50);
         panelFondo.add(ADN_decodificado);
         
         
