@@ -1,13 +1,62 @@
+import java.awt.Color;
+import java.awt.Dimension;
 import java.util.Scanner;
+import javax.swing.*;
+import java.awt.event.*;
 
-public class decodificadorADN {
+public class decodificadorADN extends JFrame implements ActionListener{
+    
     private String primeraCadena;
     private String segundaCadena;
     private int i, j;
     Scanner entrada = new Scanner(System.in);
+    private JPanel panelFondo;
+    private JButton botonAceptar;
+    private JLabel instrucciones, ADN_decodificado;
+    private JTextField primerTexto, segundoTexto;
+    private String aux, aux2;
     
     public decodificadorADN(){
-        ejecutar();
+        setLayout(null);
+        
+        this.setVisible(true);
+        this.setSize(300,300);
+        this.setMinimumSize(new Dimension(520,300));
+        //this.setResizable(false);
+        this.setLocationRelativeTo(null);
+        
+       // this.getContentPane().setBackground(Color.red);
+        panelFondo = new JPanel();
+        panelFondo.setLayout(null);
+        //panelFondo.setBackground(Color.BLACK);
+        panelFondo.setBounds(0,0,500,300);
+        this.getContentPane().add(panelFondo);
+        
+        instrucciones = new JLabel("Introduzca c/u de las secuencias del ADN en cada una de las casillas: ");
+        instrucciones.setBounds(10,10,500,50);
+        panelFondo.add(instrucciones);
+        
+        primerTexto = new JTextField();
+        primerTexto.setBounds(10,70,200,40);
+        panelFondo.add(primerTexto);
+        
+        segundoTexto = new JTextField();
+        segundoTexto.setBounds(10,130,200,40);
+        panelFondo.add(segundoTexto);
+        
+        botonAceptar = new JButton("Aceptar");
+        botonAceptar.setBounds(220,100,100,50);
+        botonAceptar.addActionListener(this);
+        panelFondo.add(botonAceptar);
+        
+        
+        ADN_decodificado = new JLabel();
+        ADN_decodificado.setBounds(20,190,200,50);
+        panelFondo.add(ADN_decodificado);
+        
+        
+        this.setDefaultCloseOperation(EXIT_ON_CLOSE);        
+        
     }
     
     public void ejecutar(){
@@ -63,11 +112,14 @@ public class decodificadorADN {
         }
         
         if(aux.length() > aux2.length()){
-            System.out.println("cadena: "+aux);
+                ADN_decodificado.setText(aux);
+            System.out.println("ADN decodificado: "+aux);
         }else if(aux.length() < aux2.length()){
-            System.out.println("cadena2: "+aux2);
+            ADN_decodificado.setText(aux2);
+            System.out.println("ADN decodificado: "+aux2);
         }else{
-            System.out.println("cadena: "+aux);
+            ADN_decodificado.setText(aux);
+            System.out.println("ADN decodificado: "+aux);
         }
             
         
@@ -90,4 +142,17 @@ public class decodificadorADN {
         return aux;
     }
     
+    public void actionPerformed(ActionEvent e){
+        if(e.getSource() == botonAceptar){
+            String primTexto = primerTexto.getText();
+            String segTexto = segundoTexto.getText();
+            
+            separarCadenas(primTexto, segTexto);
+            primerTexto.setText("");
+            segundoTexto.setText("");
+            
+            ADN_decodificado.setVisible(true);
+            
+        }
+    }
 }
