@@ -113,7 +113,7 @@ public class decodificadorADN extends JFrame implements ActionListener{
         
         if(aux.length() > aux2.length()){
                 ADN_decodificado.setText(aux);
-            System.out.println("ADN decodificado: "+aux);
+            System.out.println("ADN decodificado ///: "+aux);
         }else if(aux.length() < aux2.length()){
             ADN_decodificado.setText(aux2);
             System.out.println("ADN decodificado: "+aux2);
