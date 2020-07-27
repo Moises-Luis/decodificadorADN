@@ -10,12 +10,17 @@ public class decodificadorADN extends JFrame implements ActionListener{
     private String primeraCadena;
     private String segundaCadena;
     private int i, j;
-    Scanner entrada = new Scanner(System.in);
+    private Scanner entrada = new Scanner(System.in);
     private JPanel panelFondo;
     private JButton botonAceptar;
     private JLabel instrucciones,segundaParteDeLasInstrucciones, ADN_decodificado;
     private JTextField primerTexto, segundoTexto;
     private String aux, aux2;
+    
+    /**
+     * Constructor de la clase
+     * - inicializacion de las variables de la interfaz
+     */
     
     public decodificadorADN(){
         setLayout(null);
@@ -74,6 +79,11 @@ public class decodificadorADN extends JFrame implements ActionListener{
         
     }
     
+    
+    /**
+     * Metodo que se utilizó para la parte de la consola
+     * específicamente para pedir datos al usuario
+     */
     public void ejecutar(){
         System.out.println("Ingrese la primera cadena: ");
         primeraCadena = entrada.nextLine();
@@ -84,6 +94,12 @@ public class decodificadorADN extends JFrame implements ActionListener{
         
     }
     
+    /**
+     * Método encargado de la logica para poder obtener los primeros caracteres iguales de las dos
+     * cadenas introducidas
+     * @param primCadena: parámetro utilizado específicamente para la primera cadena del ADN
+     * @param segundCadena : este contendría la segunda cadena del ADN
+     */
     public void separarCadenas(String primCadena, String segundCadena){
         String aux = "", aux2 = "";
         int tamañoMaximoARecorrer = 0;
@@ -140,6 +156,15 @@ public class decodificadorADN extends JFrame implements ActionListener{
         
     }
     
+    /**
+     * Metodo encargado de obtener todos los caracteres iguales en ambas cadenas
+     * @param a: posición en la primera cadena en la que se encuentra el primer similar 
+     * @param b: posición en la segunda cadena en la que se encuentra el caracter igual a la otra cadena
+     * @param cadena1: cadena de caracteres del primer ADN
+     * @param cadena2: cadena de caracteres del segundo ADN
+     * @return : el ADN decodificado
+     */
+    
     public String getCadena(int a, int b, String cadena1 , String cadena2){
         boolean aux1 = true;
         String aux="";
@@ -157,6 +182,10 @@ public class decodificadorADN extends JFrame implements ActionListener{
         return aux;
     }
     
+    /**
+     * 
+     * @param e: variable en la que se almacenará el evento del boton 
+     */
     public void actionPerformed(ActionEvent e){
         if(e.getSource() == botonAceptar){
             String primTexto = primerTexto.getText();
