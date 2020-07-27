@@ -142,6 +142,7 @@ public class decodificadorADN extends JFrame implements ActionListener{
         return aux;
     }
     
+    @Override
     public void actionPerformed(ActionEvent e){
         if(e.getSource() == botonAceptar){
             String primTexto = primerTexto.getText();
