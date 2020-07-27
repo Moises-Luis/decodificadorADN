@@ -1,5 +1,6 @@
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.util.Scanner;
 import javax.swing.*;
 import java.awt.event.*;
@@ -9,49 +10,68 @@ public class decodificadorADN extends JFrame implements ActionListener{
     private String primeraCadena;
     private String segundaCadena;
     private int i, j;
-    Scanner entrada = new Scanner(System.in);
+    private Scanner entrada = new Scanner(System.in);
     private JPanel panelFondo;
     private JButton botonAceptar;
-    private JLabel instrucciones, ADN_decodificado;
+    private JLabel instrucciones,segundaParteDeLasInstrucciones, ADN_decodificado;
     private JTextField primerTexto, segundoTexto;
     private String aux, aux2;
+    
+    /**
+     * Constructor de la clase
+     * - inicializacion de las variables de la interfaz
+     */
     
     public decodificadorADN(){
         setLayout(null);
         
         this.setVisible(true);
         this.setSize(300,300);
-        this.setMinimumSize(new Dimension(520,300));
+        this.setMinimumSize(new Dimension(500,300));
         //this.setResizable(false);
         this.setLocationRelativeTo(null);
         
        // this.getContentPane().setBackground(Color.red);
         panelFondo = new JPanel();
         panelFondo.setLayout(null);
-        //panelFondo.setBackground(Color.BLACK);
+        panelFondo.setBackground(Color.BLACK);
         panelFondo.setBounds(0,0,500,300);
         this.getContentPane().add(panelFondo);
         
-        instrucciones = new JLabel("Introduzca c/u de las secuencias del ADN en cada una de las casillas: ");
-        instrucciones.setBounds(10,10,500,50);
+        instrucciones = new JLabel("Introduzca c/u de las secuencias del");
+        instrucciones.setFont(new Font("chiller", 3,14));
+        instrucciones.setForeground(Color.red);
+        instrucciones.setBounds(100,10,500,50);
         panelFondo.add(instrucciones);
         
+        
+        segundaParteDeLasInstrucciones = new JLabel("ADN en cada una de las casillas: "); 
+        segundaParteDeLasInstrucciones.setFont(new Font("chiller", 3,14));
+        segundaParteDeLasInstrucciones.setForeground(Color.red);
+        segundaParteDeLasInstrucciones.setBounds(120,30,500,50);
+        panelFondo.add(segundaParteDeLasInstrucciones);
+        
+        
         primerTexto = new JTextField();
-        primerTexto.setBounds(10,70,200,40);
+        primerTexto.setBounds(70,100,200,30);
         panelFondo.add(primerTexto);
         
         segundoTexto = new JTextField();
-        segundoTexto.setBounds(10,130,200,40);
+        segundoTexto.setBounds(70,160,200,30);
         panelFondo.add(segundoTexto);
         
         botonAceptar = new JButton("Aceptar");
-        botonAceptar.setBounds(220,100,100,50);
+        botonAceptar.setFont(new Font("chiller",3,14));
+        botonAceptar.setForeground(Color.BLACK);
+        botonAceptar.setBounds(350,130,100,50);
         botonAceptar.addActionListener(this);
         panelFondo.add(botonAceptar);
         
         
         ADN_decodificado = new JLabel();
-        ADN_decodificado.setBounds(20,190,200,50);
+        ADN_decodificado.setForeground(Color.red);
+        segundaParteDeLasInstrucciones.setFont(new Font("chiller", 3,14));
+        ADN_decodificado.setBounds(200,220,200,50);
         panelFondo.add(ADN_decodificado);
         
         
@@ -59,6 +79,11 @@ public class decodificadorADN extends JFrame implements ActionListener{
         
     }
     
+    
+    /**
+     * Metodo que se utilizó para la parte de la consola
+     * específicamente para pedir datos al usuario
+     */
     public void ejecutar(){
         System.out.println("Ingrese la primera cadena: ");
         primeraCadena = entrada.nextLine();
@@ -69,6 +94,12 @@ public class decodificadorADN extends JFrame implements ActionListener{
         
     }
     
+    /**
+     * Método encargado de la logica para poder obtener los primeros caracteres iguales de las dos
+     * cadenas introducidas
+     * @param primCadena: parámetro utilizado específicamente para la primera cadena del ADN
+     * @param segundCadena : este contendría la segunda cadena del ADN
+     */
     public void separarCadenas(String primCadena, String segundCadena){
         String aux = "", aux2 = "";
         int tamañoMaximoARecorrer = 0;
@@ -125,6 +156,15 @@ public class decodificadorADN extends JFrame implements ActionListener{
         
     }
     
+    /**
+     * Metodo encargado de obtener todos los caracteres iguales en ambas cadenas
+     * @param a: posición en la primera cadena en la que se encuentra el primer similar 
+     * @param b: posición en la segunda cadena en la que se encuentra el caracter igual a la otra cadena
+     * @param cadena1: cadena de caracteres del primer ADN
+     * @param cadena2: cadena de caracteres del segundo ADN
+     * @return : el ADN decodificado
+     */
+    
     public String getCadena(int a, int b, String cadena1 , String cadena2){
         boolean aux1 = true;
         String aux="";
@@ -141,8 +181,11 @@ public class decodificadorADN extends JFrame implements ActionListener{
             }
         return aux;
     }
-    
-    @Override
+    /**
+     * 
+     * @param e: variable en la que se almacenará el evento del boton 
+     */
+
     public void actionPerformed(ActionEvent e){
         if(e.getSource() == botonAceptar){
             String primTexto = primerTexto.getText();
